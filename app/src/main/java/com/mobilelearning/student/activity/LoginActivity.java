@@ -7,6 +7,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.android.volley.AuthFailureError;
 import com.android.volley.DefaultRetryPolicy;
@@ -34,8 +35,7 @@ import butterknife.ButterKnife;
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class LoginActivity extends AppCompatActivity {
-    private int userType;
-    @BindView(R.id.btn_register) Button btnRegister;
+    @BindView(R.id.btn_register) TextView btnRegister;
     @BindView(R.id.btn_login) Button btnLogin;
     @BindView(R.id.et_username) EditText etUsername;
     @BindView(R.id.et_password) EditText etPassword;
@@ -47,7 +47,6 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
         ButterKnife.bind(this);
-        userType = getIntent().getIntExtra("userType",0);
 //        setLayout();
         setClick();
     }
@@ -60,9 +59,8 @@ public class LoginActivity extends AppCompatActivity {
         btnRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
-//                intent.putExtra("userType",userType);
-//                startActivity(intent);
+                Intent intent = new Intent(LoginActivity.this,RegisterActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -95,20 +93,13 @@ public class LoginActivity extends AppCompatActivity {
     }
     private void login(){
         final SweetAlertDialog pDialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
-//        pDialog.getProgressHelper().setBarColor(Color.parseColor("#A5DC86"));
         pDialog.setTitleText("Loading");
         pDialog.setCancelable(false);
         pDialog.show();
 
         Website web=new Website();
 
-        String url="";
-        if(userType==1)
-        {
-            url=web.getDomain()+"/auth/loginDosen?hash="+web.getHash();
-        }else{
-            url=web.getDomain()+"/auth/loginGuru?hash="+web.getHash();
-        }
+        String url=web.getDomain()+"/auth/login?hash="+web.getHash();
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
                 url,
@@ -126,15 +117,9 @@ public class LoginActivity extends AppCompatActivity {
                                 Log.d("test", "onResponse: "+data);
 
                                 User user = new User();
-                                if(userType==1) {
-                                    user.setUserId(data.getInt("id_dosen"));
-                                    user.setFullName(data.getString("nama_dosen"));
-                                    user.setUserType(1);
-                                }else{
-                                    user.setUserId(data.getInt("id_guru"));
-                                    user.setFullName(data.getString("nama_guru"));
-                                    user.setUserType(2);
-                                }
+                                user.setUserId(data.getInt("user_id"));
+                                user.setFullName(data.getString("full_name"));
+                                user.setUserType(2);
                                 user.setEmail(data.getString("email"));
                                 user.setUsername(data.getString("username"));
 
@@ -195,6 +180,7 @@ public class LoginActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String>();
                 params.put("username",username);
                 params.put("password",password);
+                params.put("user_type","2");
                 return params;
             }
 

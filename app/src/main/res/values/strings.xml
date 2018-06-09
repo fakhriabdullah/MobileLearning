@@ -23,4 +23,5 @@
     <string name="harus_diisi">Harus diisi</string>
     <string name="no_internet">Gagal Terhubung Ke Server</string>
     <string name="error_json">Gagal mendapatkan data</string>
+    <string name="password_tidak_sama">Password Tidak Sama</string>
 </resources>

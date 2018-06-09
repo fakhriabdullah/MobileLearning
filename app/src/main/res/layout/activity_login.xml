@@ -108,13 +108,12 @@
                     android:layout_height="1dp"
                     android:background="@color/abu_abu"
                     />
-                <Button
+                <TextView
                     android:layout_width="fill_parent"
                     android:layout_height="wrap_content"
                     android:text="@string/btn_belum_punya_akun"
                     android:id="@+id/btn_register"
                     android:textColor="@android:color/white"
-                    android:backgroundTint="@android:color/transparent"
                     android:textSize="13sp"
                     android:textAllCaps="false"
                     />

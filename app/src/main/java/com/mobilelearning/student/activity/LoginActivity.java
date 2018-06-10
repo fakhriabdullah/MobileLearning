@@ -98,8 +98,8 @@ public class LoginActivity extends AppCompatActivity {
         pDialog.show();
 
         Website web=new Website();
-
         String url=web.getDomain()+"/auth/login?hash="+web.getHash();
+
         RequestQueue queue = Volley.newRequestQueue(LoginActivity.this);
         StringRequest jsonObjReq = new StringRequest(Request.Method.POST,
                 url,

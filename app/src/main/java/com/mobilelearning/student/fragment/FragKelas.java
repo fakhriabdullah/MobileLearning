@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -26,7 +27,9 @@ import com.android.volley.toolbox.Volley;
 import com.mobilelearning.student.MainActivity;
 import com.mobilelearning.student.R;
 import com.mobilelearning.student.activity.LoginActivity;
+import com.mobilelearning.student.adapter.KelasAdapter;
 import com.mobilelearning.student.db.DBUser;
+import com.mobilelearning.student.model.Kelas;
 import com.mobilelearning.student.model.User;
 import com.mobilelearning.student.util.Website;
 
@@ -34,7 +37,9 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.concurrent.TimeUnit;
@@ -47,6 +52,8 @@ public class FragKelas extends Fragment {
     private FloatingActionButton fabTambahKelas;
     private LinearLayout llNoData;
     private RecyclerView rvKelas;
+    private KelasAdapter adapter;
+    private List<Kelas> kelasList = new ArrayList<>();
 
     private User user;
     @Override
@@ -69,6 +76,7 @@ public class FragKelas extends Fragment {
         fabTambahKelas=(FloatingActionButton)view.findViewById(R.id.fab_tambah_kelas);
         llNoData=(LinearLayout)view.findViewById(R.id.ll_no_data);
         rvKelas=(RecyclerView)view.findViewById(R.id.rv_kelas);
+        rvKelas.setLayoutManager(new LinearLayoutManager(getActivity()));
     }
 
     private void setClick() {
@@ -108,7 +116,6 @@ public class FragKelas extends Fragment {
 
         Website web=new Website();
         String url=web.getDomain()+"/kelas/findKelas/user_id/"+user.getUserId();
-        Log.d("url",url);
 
         RequestQueue queue = Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
         StringRequest jsonObjReq = new StringRequest(Request.Method.GET,
@@ -117,29 +124,27 @@ public class FragKelas extends Fragment {
 
                     @Override
                     public void onResponse(String response) {
-                        Log.d("test", "onResponse: "+response);
                         try {
                             JSONObject jsonObject= new JSONObject(response);
                             if(jsonObject.getBoolean("status"))
                             {
 
-                                JSONObject data = jsonObject.getJSONObject("data");
-                                Log.d("test", "onResponse: "+data);
+                                JSONArray jsonArray = jsonObject.getJSONArray("data");
+                                for(int i=0;i<jsonArray.length();i++)
+                                {
+                                    JSONObject data=jsonArray.getJSONObject(i);
+                                    Kelas kelas = new Kelas();
+                                    kelas.setKelasId(data.getInt("kelas_id"));
+                                    kelas.setUserId(data.getInt("user_id"));
+                                    kelas.setNamaKelas(data.getString("nama_kelas"));
+                                    kelas.setGuru(data.getString("nama_guru"));
+                                    kelas.setDeskripsi(data.getString("deskripsi"));
+                                    kelasList.add(kelas);
+                                }
 
-//                                User user = new User();
-//                                user.setUserId(data.getInt("user_id"));
-//                                user.setFullName(data.getString("full_name"));
-//                                user.setUserType(2);
-//                                user.setEmail(data.getString("email"));
-//                                user.setUsername(data.getString("username"));
-//
-//                                DBUser db = new DBUser(LoginActivity.this);
-//                                db.save(user);
-//
-//                                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-//                                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//                                startActivity(intent);
-//                                finish();
+                                adapter=new KelasAdapter(getActivity(),kelasList);
+                                rvKelas.setAdapter(adapter);
+                                rvKelas.setVisibility(View.VISIBLE);
                             }else{
                                 llNoData.setVisibility(View.VISIBLE);
                             }

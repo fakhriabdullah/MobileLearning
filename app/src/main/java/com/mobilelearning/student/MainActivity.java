@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity
         DBUser db= new DBUser(this);
         if(db.isNull())
         {
-            Intent i = new Intent(MainActivity.this, LoginActivity2.class);
+            Intent i = new Intent(MainActivity.this, LoginActivity.class);
             startActivity(i);
             finish();
         }

@@ -110,6 +110,7 @@ public class FragKelas extends Fragment {
 
     private void getKelas() {
         if(!isAdded())return;
+        kelasList.clear();
         mSwipeRefreshLayout.setRefreshing(true);
         llNoData.setVisibility(View.GONE);
         rvKelas.setVisibility(View.GONE);

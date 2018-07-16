@@ -59,7 +59,6 @@ public class FragKelas extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         view=inflater.inflate(R.layout.frag_kelas, container, false);
 
         DBUser db = new DBUser(getActivity());
@@ -182,65 +181,6 @@ public class FragKelas extends Fragment {
                         DEFAULT_MAX_RETRIES,
                         DEFAULT_BACKOFF_MULT));
         queue.add(jsonObjReq);
-//        JsonArrayRequest jsomObjReq=new JsonArrayRequest(url,
-//                new Response.Listener<JSONArray>() {
-//                    @Override
-//                    public void onResponse(JSONArray jarray) {
-//                        if(!isAdded())return;
-//
-//                        mSwipeRefreshLayout.setRefreshing(false);
-//                        try {
-////                            if(jarray.length()==0){
-////                                tv_error_product.setVisibility(View.VISIBLE);
-////                            }else{
-////                                for(int i=0;i<jarray.length();i++)
-////                                {
-////                                    JSONObject c=jarray.getJSONObject(i);
-////                                    Product pr=new Product();
-////                                    pr.setProductId(c.getInt("product_id"));
-////                                    pr.setStoreName(c.getString("company_name"));
-////                                    pr.setStoreId(c.getInt("mitra_id"));
-////                                    pr.setProductName(c.getString("product_name"));
-////                                    pr.setProductImage(c.getString("product_image"));
-////                                    pr.setDescription(c.getString("product_description"));
-////                                    pr.setStoreId(c.getInt("user_id"));
-////                                    pr.setPriceDirham(c.getDouble("price_dirham"));
-////                                    pr.setPriceDinar(c.getDouble("price_dinar"));
-////                                    pr.setPrice(c.getInt("product_price"));
-////                                    pr.setProductCondition(c.getString("product_condition"));
-////                                    pr.setStock(c.getInt("product_stock"));
-////                                    pr.setCategoryName(c.getString("category_name"));
-////                                    pr.setViewCounter(c.getInt("view_counter"));
-////                                    pr.setDiscount(c.getInt("product_discount"));
-////                                    listProduct.add(pr);
-////                                }
-////
-////                                int ukuran_gambar=lebar/2;
-////                                productAdapter=new ProductAdapter(ProductByMerchantActivity.this,listProduct,ukuran_gambar,false);
-////                                gvProduct.setAdapter(productAdapter);
-////                                gvProduct.setVisibility(View.VISIBLE);
-////                            }
-//                        } catch (JSONException e) {
-//                            // TODO Auto-generated catch block
-//                            e.printStackTrace();
-//                            e.getMessage();
-//                            Toast.makeText(getActivity(), getResources().getString(R.string.error_json) , Toast.LENGTH_LONG).show();
-//                        }
-//                        mSwipeRefreshLayout.setRefreshing(false);
-//                    }
-//                },new Response.ErrorListener()
-//        {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                // hide the progress dialog
-//                Log.d("test", "onErrorResponse: "+error.getMessage());
-//                mSwipeRefreshLayout.setRefreshing(false);
-//                Toast.makeText(getActivity(), getResources().getString(R.string.no_internet), Toast.LENGTH_LONG).show();
-//            }
-//        });
-//
-//        RequestQueue queue= Volley.newRequestQueue(Objects.requireNonNull(getActivity()));
-//        queue.add(jsomObjReq);
     }
 
     private void joinKelas(final String kodeKelas) {

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.mobilelearning.student.R;
 import com.mobilelearning.student.activity.TopikActivity;
+import com.mobilelearning.student.model.Konten;
 import com.mobilelearning.student.model.Topik;
 
 import java.util.List;
@@ -18,56 +19,44 @@ import java.util.List;
  * Created by fakhriabdullah on 16/02/2018.
  */
 
-public class TopikAdapter extends RecyclerView.Adapter<TopikAdapter.MyViewHolder>{
+public class KontenAdapter extends RecyclerView.Adapter<KontenAdapter.MyViewHolder>{
     private Activity activity;
-    private List<Topik> topikList;
+    private List<Konten> kontenList;
 
-    public TopikAdapter(Activity act, List<Topik> list) {
+    public KontenAdapter(Activity act, List<Konten> list) {
         this.activity = act;
-        this.topikList = list;
+        this.kontenList = list;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.list_topik, parent, false);
+                .inflate(R.layout.list_konten, parent, false);
         return new MyViewHolder(itemView);
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
-        final Topik t=topikList.get(position);
-        holder.tvTopik.setText(t.getTopikNama());
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(activity, TopikActivity.class);
-                intent.putExtra("topikId",t.getTopikId());
-                intent.putExtra("topikName",t.getTopikNama());
-                activity.startActivity(intent);
-            }
-        });
-
+        final Konten k= kontenList.get(position);
+        holder.tvKonten.setText(k.getKontenName());
     }
 
     @Override
     public long getItemId(int position) {
-        return topikList.get(position).getTopikId();
+        return kontenList.get(position).getKontenId();
     }
 
     @Override
     public int getItemCount() {
-        return topikList.size();
+        return kontenList.size();
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTopik, tvStatus;
+        public TextView tvKonten;
 
         public MyViewHolder(View view) {
             super(view);
-            tvTopik=(TextView)view.findViewById(R.id.tv_topik);
-            tvStatus=(TextView)view.findViewById(R.id.tv_status);
+            tvKonten=(TextView)view.findViewById(R.id.tv_konten);
         }
     }
 }

@@ -31,6 +31,7 @@
             android:name=".activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.KelasActivity" />
+        <activity android:name=".activity.TopikActivity"></activity>
     </application>
 
 </manifest>

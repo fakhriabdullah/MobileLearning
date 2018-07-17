@@ -31,7 +31,10 @@
             android:name=".activity.RegisterActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".activity.KelasActivity" />
-        <activity android:name=".activity.TopikActivity"></activity>
+        <activity android:name=".activity.TopikActivity" />
+        <activity android:name=".konten.PdfViewer" />
+        <activity android:name=".konten.DocumentViewer" />
+        <activity android:name=".konten.VideoPlayer"></activity>
     </application>
 
 </manifest>

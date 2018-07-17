@@ -2,7 +2,6 @@ package com.mobilelearning.student.activity;
 
 import android.graphics.PorterDuff;
 import android.os.Bundle;
-import android.support.design.widget.TextInputLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;

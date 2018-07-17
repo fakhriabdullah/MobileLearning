@@ -8,8 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.github.barteksc.pdfviewer.PDFView;
 import com.mobilelearning.student.R;
 import com.mobilelearning.student.activity.TopikActivity;
+import com.mobilelearning.student.konten.DocumentViewer;
+import com.mobilelearning.student.konten.PdfViewer;
+import com.mobilelearning.student.konten.VideoPlayer;
 import com.mobilelearning.student.model.Konten;
 import com.mobilelearning.student.model.Topik;
 
@@ -39,6 +43,15 @@ public class KontenAdapter extends RecyclerView.Adapter<KontenAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Konten k= kontenList.get(position);
         holder.tvKonten.setText(k.getKontenName());
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(activity, VideoPlayer.class);
+//                intent.putExtra("topikId",t.getTopikId());
+//                intent.putExtra("topikName",t.getTopikNama());
+                activity.startActivity(intent);
+            }
+        });
     }
 
     @Override

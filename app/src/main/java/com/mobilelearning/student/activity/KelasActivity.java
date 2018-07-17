@@ -125,6 +125,7 @@ public class KelasActivity extends AppCompatActivity {
                                     Topik topik = new Topik();
                                     topik.setTopikId(data.getInt("topik_belajar_id"));
                                     topik.setTopikNama(data.getString("nama"));
+                                    topik.setColor(data.getString("color"));
                                     topikList.add(topik);
                                 }
 

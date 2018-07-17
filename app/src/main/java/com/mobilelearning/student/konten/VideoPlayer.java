@@ -2,6 +2,8 @@ package com.mobilelearning.student.konten;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 import android.widget.Toast;
 
 import com.google.android.youtube.player.YouTubeBaseActivity;
@@ -9,7 +11,7 @@ import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
 import com.mobilelearning.student.R;
-import com.mobilelearning.student.util.config;
+import com.mobilelearning.student.util.Config;
 
 public class VideoPlayer extends YouTubeBaseActivity implements YouTubePlayer.OnInitializedListener {
     private static final int RECOVERY_REQUEST = 1;
@@ -18,8 +20,17 @@ public class VideoPlayer extends YouTubeBaseActivity implements YouTubePlayer.On
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_player);
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         youTubeView = (YouTubePlayerView) findViewById(R.id.youtube_view);
-        youTubeView.initialize(config.YOUTUBE_API_KEY, this);
+        youTubeView.initialize(Config.YOUTUBE_API_KEY, this);
     }
 
     @Override
@@ -43,7 +54,7 @@ public class VideoPlayer extends YouTubeBaseActivity implements YouTubePlayer.On
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_REQUEST) {
             // Retry initialization if user performed a recovery action
-            getYouTubePlayerProvider().initialize(getResources().getString(R.string.youtube_key), this);
+            getYouTubePlayerProvider().initialize(Config.YOUTUBE_API_KEY, this);
         }
     }
 

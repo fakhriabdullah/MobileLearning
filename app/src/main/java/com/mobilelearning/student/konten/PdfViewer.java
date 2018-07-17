@@ -3,6 +3,8 @@ package com.mobilelearning.student.konten;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.View;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.mobilelearning.student.R;
@@ -21,10 +23,18 @@ public class PdfViewer extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pdf_viewer);
 
+        Toolbar toolbar=(Toolbar)findViewById(R.id.toolbar);
+        toolbar.setNavigationIcon(R.drawable.ic_arrow_back);
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
         pdfView=(PDFView)findViewById(R.id.pdfView);
         Website web = new Website();
         new RetrievePDFStream().execute(web.getMainDomain()+"/files/Manajemen_Proses.pdf");
-
     }
 
     class RetrievePDFStream extends AsyncTask<String,Void,InputStream>
@@ -52,7 +62,7 @@ public class PdfViewer extends AppCompatActivity {
         protected void onPostExecute(InputStream inputStream) {
             pdfView.fromStream(inputStream)
                     .enableSwipe(true)
-                    .swipeHorizontal(true)
+                    .enableDoubletap(true)
                     .load();
         }
     }

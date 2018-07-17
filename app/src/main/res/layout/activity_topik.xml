@@ -47,10 +47,6 @@
                         android:textStyle="bold"
                         android:textColor="@color/abu_tua"
                         android:text="Rekomendasi untuk Anda"/>
-                    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-                        <!--xmlns:tools="http://schemas.android.com/tools"-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="match_parent">-->
                         <LinearLayout
                             android:id="@+id/ll_no_data_recommended"
                             android:layout_width="wrap_content"
@@ -71,8 +67,9 @@
                             android:layout_width="fill_parent"
                             android:layout_height="wrap_content"
                             android:id="@+id/rv_konten_recommended"
+                            android:layout_marginEnd="5dp"
+                            android:layout_marginStart="5dp"
                             />
-                    <!--</FrameLayout>-->
 
                     <TextView
                         android:layout_width="match_parent"
@@ -85,10 +82,6 @@
                         android:textColor="@color/abu_tua"
                         android:text="Tidak direkomendasikan"
                         android:layout_marginTop="20dp"/>
-                    <!--<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-                    <!--xmlns:tools="http://schemas.android.com/tools"-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="match_parent">-->
                     <LinearLayout
                         android:id="@+id/ll_no_data_norecommended"
                         android:layout_width="wrap_content"
@@ -110,7 +103,6 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/rv_konten_norecommended"
                         />
-                    <!--</FrameLayout>-->
                 </LinearLayout>
             </android.support.v4.widget.NestedScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>

@@ -10,12 +10,12 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="100dp"
-            android:background="@color/colorAccent"
+            android:background="@color/colorPrimaryLight"
             android:id="@+id/iv_header"/>
         <ImageView
             android:layout_width="80dp"
             android:layout_height="80dp"
-            android:background="@color/colorPrimary"
+            android:src="@drawable/no_profile_image_circle"
             android:layout_centerHorizontal="true"
             android:layout_below="@id/iv_header"
             android:layout_marginTop="-40dp"
@@ -29,10 +29,16 @@
             android:layout_below="@id/iv_profil"
             android:layout_marginTop="5dp"/>
     </RelativeLayout>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Kelas Anda"
+        android:textSize="18dp"
+        android:layout_margin="10dp"
+        android:textColor="@color/abu_tua"/>
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp">
+        android:layout_height="match_parent">
         <LinearLayout
             android:id="@+id/ll_no_data"
             android:layout_width="wrap_content"
@@ -65,7 +71,8 @@
             android:layout_gravity="bottom|end"
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_add"
-            android:id="@+id/fab_tambah_kelas"/>
+            android:id="@+id/fab_tambah_kelas"
+            android:background="@color/colorPrimaryLight"/>
     </FrameLayout>
 
 </LinearLayout>

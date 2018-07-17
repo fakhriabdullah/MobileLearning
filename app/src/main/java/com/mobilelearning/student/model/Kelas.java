@@ -6,6 +6,7 @@ public class Kelas {
     private String guru;
     private String namaKelas;
     private String deskripsi;
+    private String color;
 
     public int getKelasId() {
         return kelasId;
@@ -45,5 +46,13 @@ public class Kelas {
 
     public void setDeskripsi(String deskripsi) {
         this.deskripsi = deskripsi;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

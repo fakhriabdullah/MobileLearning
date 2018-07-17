@@ -2,10 +2,12 @@ package com.mobilelearning.student.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.github.barteksc.pdfviewer.PDFView;
@@ -43,13 +45,28 @@ public class KontenAdapter extends RecyclerView.Adapter<KontenAdapter.MyViewHold
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Konten k= kontenList.get(position);
         holder.tvKonten.setText(k.getKontenName());
+        holder.llKonten.setBackgroundColor(Color.parseColor(k.getColor()));
+        holder.tvBottom.setBackgroundColor(Color.parseColor(k.getColorLight()));
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(activity, VideoPlayer.class);
+                Intent intent=null;
+                if(k.getKontenType().equalsIgnoreCase("pdf"))
+                {
+                    intent= new Intent(activity, PdfViewer.class);
+                }else if(k.getKontenType().equalsIgnoreCase("video"))
+                {
+                    intent= new Intent(activity, VideoPlayer.class);
+                }else if(k.getKontenType().equalsIgnoreCase("web"))
+                {
+                    intent= new Intent(activity, DocumentViewer.class);
+                }
+                if(intent!=null)
+                {
 //                intent.putExtra("topikId",t.getTopikId());
 //                intent.putExtra("topikName",t.getTopikNama());
-                activity.startActivity(intent);
+                    activity.startActivity(intent);
+                }
             }
         });
     }
@@ -64,12 +81,15 @@ public class KontenAdapter extends RecyclerView.Adapter<KontenAdapter.MyViewHold
         return kontenList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvKonten;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tvKonten, tvBottom;
+        LinearLayout llKonten;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
             tvKonten=(TextView)view.findViewById(R.id.tv_konten);
+            tvBottom=(TextView)view.findViewById(R.id.tv_bottom);
+            llKonten=(LinearLayout) view.findViewById(R.id.ll_konten);
         }
     }
 }

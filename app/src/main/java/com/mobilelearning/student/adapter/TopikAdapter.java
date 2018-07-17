@@ -2,6 +2,8 @@ package com.mobilelearning.student.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,6 +40,7 @@ public class TopikAdapter extends RecyclerView.Adapter<TopikAdapter.MyViewHolder
     public void onBindViewHolder(MyViewHolder holder, int position) {
         final Topik t=topikList.get(position);
         holder.tvTopik.setText(t.getTopikNama());
+//        holder.cardView.setCardBackgroundColor(Color.parseColor(t.getColor()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -61,11 +64,13 @@ public class TopikAdapter extends RecyclerView.Adapter<TopikAdapter.MyViewHolder
         return topikList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvTopik, tvStatus;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tvTopik, tvStatus;
+        CardView cardView;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
+            cardView=(CardView)view.findViewById(R.id.card_view);
             tvTopik=(TextView)view.findViewById(R.id.tv_topik);
             tvStatus=(TextView)view.findViewById(R.id.tv_status);
         }

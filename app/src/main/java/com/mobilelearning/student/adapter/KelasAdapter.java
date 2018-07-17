@@ -2,6 +2,8 @@ package com.mobilelearning.student.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -40,6 +42,7 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.MyViewHolder
         holder.tvKelas.setText(k.getNamaKelas());
         holder.tvGuru.setText(k.getGuru());
         holder.tvDeskripsi.setText(k.getDeskripsi());
+        holder.cardView.setCardBackgroundColor(Color.parseColor(k.getColor()));
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,11 +66,13 @@ public class KelasAdapter extends RecyclerView.Adapter<KelasAdapter.MyViewHolder
         return kelasList.size();
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView tvKelas, tvGuru, tvDeskripsi;
+    class MyViewHolder extends RecyclerView.ViewHolder {
+        TextView tvKelas, tvGuru, tvDeskripsi;
+        CardView cardView;
 
-        public MyViewHolder(View view) {
+        MyViewHolder(View view) {
             super(view);
+            cardView=(CardView)view.findViewById(R.id.card_view);
             tvKelas=(TextView)view.findViewById(R.id.tv_kelas);
             tvGuru=(TextView)view.findViewById(R.id.tv_guru);
             tvDeskripsi=(TextView)view.findViewById(R.id.tv_deskripsi);

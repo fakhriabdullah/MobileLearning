@@ -15,7 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
@@ -62,6 +64,9 @@ public class FragUtama extends Fragment {
     private RecyclerView rvKelas;
     private KelasAdapter adapter;
     private List<Kelas> kelasList = new ArrayList<>();
+
+    private ImageView ivProfil;
+    private TextView tvNama;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -84,6 +89,10 @@ public class FragUtama extends Fragment {
         llNoData=(LinearLayout)view.findViewById(R.id.ll_no_data);
         rvKelas=(RecyclerView)view.findViewById(R.id.rv_kelas);
         rvKelas.setLayoutManager(new LinearLayoutManager(getActivity()));
+
+        tvNama=(TextView)view.findViewById(R.id.tv_nama);
+        ivProfil=(ImageView)view.findViewById(R.id.iv_profil);
+        tvNama.setText(user.getFullName());
     }
 
     private void setClick() {
@@ -147,6 +156,7 @@ public class FragUtama extends Fragment {
                                     kelas.setNamaKelas(data.getString("nama_kelas"));
                                     kelas.setGuru(data.getString("nama_guru"));
                                     kelas.setDeskripsi(data.getString("deskripsi"));
+                                    kelas.setColor(data.getString("color"));
                                     kelasList.add(kelas);
                                 }
 

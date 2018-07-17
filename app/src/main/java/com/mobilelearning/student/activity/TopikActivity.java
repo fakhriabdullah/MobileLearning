@@ -128,6 +128,8 @@ public class TopikActivity extends AppCompatActivity {
                                     k.setKontenName(c.getString("nama"));
                                     k.setFile(c.getString("file"));
                                     k.setKontenType(c.getString("jenis"));
+                                    k.setColor(c.getString("color"));
+                                    k.setColorLight(c.getString("color_light"));
                                     kontenListRecommended.add(k);
                                 }
                                 adapterRecommended=new KontenAdapter(activity,kontenListRecommended);
@@ -150,6 +152,8 @@ public class TopikActivity extends AppCompatActivity {
                                     k.setKontenName(c.getString("nama"));
                                     k.setFile(c.getString("file"));
                                     k.setKontenType(c.getString("jenis"));
+                                    k.setColor(c.getString("color"));
+                                    k.setColorLight(c.getString("color_light"));
                                     kontenListNoRecommended.add(k);
                                 }
                                 adapterNoRecommended=new KontenAdapter(activity,kontenListNoRecommended);

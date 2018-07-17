@@ -5,6 +5,7 @@ public class Konten {
     String kontenName;
     String kontenType;
     String file;
+    private String color, colorLight;
 
     public int getKontenId() {
         return kontenId;
@@ -36,5 +37,21 @@ public class Konten {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
+
+    public String getColorLight() {
+        return colorLight;
+    }
+
+    public void setColorLight(String colorLight) {
+        this.colorLight = colorLight;
     }
 }

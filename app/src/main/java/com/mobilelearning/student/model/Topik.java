@@ -4,6 +4,7 @@ public class Topik {
     private int topikId;
     private String topikNama;
     private int topikStatus;
+    private String color;
 
     public int getTopikId() {
         return topikId;
@@ -27,5 +28,13 @@ public class Topik {
 
     public void setTopikStatus(int topikStatus) {
         this.topikStatus = topikStatus;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
     }
 }

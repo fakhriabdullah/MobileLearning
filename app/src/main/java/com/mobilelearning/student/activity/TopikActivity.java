@@ -5,11 +5,11 @@ import android.content.Intent;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 
@@ -19,16 +19,12 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
-import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.mobilelearning.student.MainActivity;
 import com.mobilelearning.student.R;
 import com.mobilelearning.student.adapter.KontenAdapter;
-import com.mobilelearning.student.adapter.TopikAdapter;
 import com.mobilelearning.student.db.DBUser;
 import com.mobilelearning.student.model.Konten;
-import com.mobilelearning.student.model.Topik;
 import com.mobilelearning.student.model.User;
 import com.mobilelearning.student.util.Website;
 
@@ -56,6 +52,7 @@ public class TopikActivity extends AppCompatActivity {
     private RecyclerView rvRecommended;
     private LinearLayout llNoDataNoRecommended;
     private RecyclerView rvNoRecommended;
+    private CardView cvQuiz;
 
     private List<Konten> kontenListRecommended=new ArrayList<>();
     private List<Konten> kontenListNoRecommended=new ArrayList<>();
@@ -90,6 +87,7 @@ public class TopikActivity extends AppCompatActivity {
         rvNoRecommended=(RecyclerView)findViewById(R.id.rv_konten_norecommended);
         rvNoRecommended.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false));
         llNoDataNoRecommended=(LinearLayout)findViewById(R.id.ll_no_data_norecommended);
+        cvQuiz=(CardView)findViewById(R.id.cv_quiz);
     }
 
     private void setClick() {
@@ -97,6 +95,16 @@ public class TopikActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 finish();
+            }
+        });
+
+        cvQuiz.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(TopikActivity.this,QuizOverviewActivity.class);
+                i.putExtra("topikId",topikId);
+                i.putExtra("topikName",topikName);
+                startActivity(i);
             }
         });
     }
@@ -126,7 +134,7 @@ public class TopikActivity extends AppCompatActivity {
                                     Konten k = new Konten();
                                     k.setKontenId(c.getInt("konten_belajar_id"));
                                     k.setKontenName(c.getString("nama"));
-                                    k.setFile(c.getString("file"));
+                                    k.setValue(c.getString("value"));
                                     k.setKontenType(c.getString("jenis"));
                                     k.setColor(c.getString("color"));
                                     k.setColorLight(c.getString("color_light"));
@@ -150,7 +158,7 @@ public class TopikActivity extends AppCompatActivity {
                                     Konten k = new Konten();
                                     k.setKontenId(c.getInt("konten_belajar_id"));
                                     k.setKontenName(c.getString("nama"));
-                                    k.setFile(c.getString("file"));
+                                    k.setValue(c.getString("value"));
                                     k.setKontenType(c.getString("jenis"));
                                     k.setColor(c.getString("color"));
                                     k.setColorLight(c.getString("color_light"));

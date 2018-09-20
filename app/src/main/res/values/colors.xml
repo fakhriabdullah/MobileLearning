@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#7e57c2</color>
-    <color name="colorPrimaryDark">#4d2c91</color>
-    <color name="colorPrimaryLight">#b085f5</color>
-    <color name="colorAccent">#ffca28</color>
+    <color name="colorPrimary">#673ab7</color>
+    <color name="colorPrimaryDark">#320b86</color>
+    <color name="colorPrimaryLight">#9a67ea</color>
+    <color name="colorAccent">#5c6bc0</color>
     <color name="abu_abu">#ababab</color>
     <color name="abu_muda">#dedede</color>
     <color name="abu_tua">#666666</color>
     <color name="hijau">#27b944</color>
+
+    <color name="black_overlay">#66000000</color>
 </resources>

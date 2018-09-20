@@ -2,7 +2,6 @@ package com.mobilelearning.student.adapter;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.Color;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -41,7 +40,23 @@ public class TopikAdapter extends RecyclerView.Adapter<TopikAdapter.MyViewHolder
         final Topik t=topikList.get(position);
         holder.tvTopik.setText(t.getTopikNama());
 //        holder.cardView.setCardBackgroundColor(Color.parseColor(t.getColor()));
+        switch (t.getColor())
+        {
+            case 1:
+                holder.tvNick.setBackgroundResource(R.drawable.bg_blue);
+                break;
+            case 2:
+                holder.tvNick.setBackgroundResource(R.drawable.bg_green);
+                break;
+            case 3:
+                holder.tvNick.setBackgroundResource(R.drawable.bg_grey);
+                break;
+            case 4:
+                holder.tvNick.setBackgroundResource(R.drawable.bg_red);
+                break;
+        }
 
+        holder.tvNick.setText(t.getTopikNama().toUpperCase().charAt(0)+"");
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,14 +80,14 @@ public class TopikAdapter extends RecyclerView.Adapter<TopikAdapter.MyViewHolder
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder {
-        TextView tvTopik, tvStatus;
+        TextView tvTopik, tvNick;
         CardView cardView;
 
         MyViewHolder(View view) {
             super(view);
             cardView=(CardView)view.findViewById(R.id.card_view);
             tvTopik=(TextView)view.findViewById(R.id.tv_topik);
-            tvStatus=(TextView)view.findViewById(R.id.tv_status);
+            tvNick =(TextView)view.findViewById(R.id.tv_nick);
         }
     }
 }

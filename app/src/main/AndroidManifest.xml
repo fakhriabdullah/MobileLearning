@@ -34,7 +34,11 @@
         <activity android:name=".activity.TopikActivity" />
         <activity android:name=".konten.PdfViewer" />
         <activity android:name=".konten.DocumentViewer" />
-        <activity android:name=".konten.VideoPlayer"></activity>
+        <activity android:name=".konten.VideoPlayer" />
+        <activity android:name=".activity.QuizOverviewActivity" />
+        <activity android:name=".activity.QuizActivity" />
+        <activity android:name=".activity.QuizFinish" />
+        <activity android:name=".activity.KontenActivity"></activity>
     </application>
 
 </manifest>

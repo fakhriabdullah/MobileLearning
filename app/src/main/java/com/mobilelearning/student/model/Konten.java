@@ -4,7 +4,7 @@ public class Konten {
     int kontenId;
     String kontenName;
     String kontenType;
-    String file;
+    String value;
     private String color, colorLight;
 
     public int getKontenId() {
@@ -31,12 +31,12 @@ public class Konten {
         this.kontenType = kontenType;
     }
 
-    public String getFile() {
-        return file;
+    public String getValue() {
+        return value;
     }
 
-    public void setFile(String file) {
-        this.file = file;
+    public void setValue(String value) {
+        this.value = value;
     }
 
     public String getColor() {

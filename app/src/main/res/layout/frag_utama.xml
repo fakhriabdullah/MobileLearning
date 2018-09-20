@@ -72,7 +72,7 @@
             android:layout_margin="@dimen/fab_margin"
             android:src="@drawable/ic_add"
             android:id="@+id/fab_tambah_kelas"
-            android:background="@color/colorPrimaryLight"/>
+            app:backgroundTint="@color/colorPrimaryLight"/>
     </FrameLayout>
 
 </LinearLayout>

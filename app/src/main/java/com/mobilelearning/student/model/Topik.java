@@ -1,10 +1,12 @@
 package com.mobilelearning.student.model;
 
+import com.mobilelearning.student.MainActivity;
+
 public class Topik {
     private int topikId;
     private String topikNama;
     private int topikStatus;
-    private String color;
+    private int color;
 
     public int getTopikId() {
         return topikId;
@@ -30,11 +32,11 @@ public class Topik {
         this.topikStatus = topikStatus;
     }
 
-    public String getColor() {
-        return color;
+    public int getColor() {
+        return this.color;
     }
 
-    public void setColor(String color) {
+    public void setColor(int color) {
         this.color = color;
     }
 }

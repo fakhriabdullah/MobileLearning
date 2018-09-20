@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.github.barteksc.pdfviewer.PDFView;
 import com.mobilelearning.student.R;
+import com.mobilelearning.student.activity.KontenActivity;
 import com.mobilelearning.student.activity.TopikActivity;
 import com.mobilelearning.student.konten.DocumentViewer;
 import com.mobilelearning.student.konten.PdfViewer;
@@ -50,23 +51,25 @@ public class KontenAdapter extends RecyclerView.Adapter<KontenAdapter.MyViewHold
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=null;
-                if(k.getKontenType().equalsIgnoreCase("pdf"))
-                {
-                    intent= new Intent(activity, PdfViewer.class);
-                }else if(k.getKontenType().equalsIgnoreCase("video"))
-                {
-                    intent= new Intent(activity, VideoPlayer.class);
-                }else if(k.getKontenType().equalsIgnoreCase("web"))
-                {
-                    intent= new Intent(activity, DocumentViewer.class);
-                }
-                if(intent!=null)
-                {
-//                intent.putExtra("topikId",t.getTopikId());
-//                intent.putExtra("topikName",t.getTopikNama());
+                Intent intent=new Intent(activity, KontenActivity.class);;
+//                if(k.getKontenType().equalsIgnoreCase("pdf"))
+//                {
+//                    intent= new Intent(activity, PdfViewer.class);
+//                }else if(k.getKontenType().equalsIgnoreCase("video"))
+//                {
+//                    intent= new Intent(activity, VideoPlayer.class);
+//                }else if(k.getKontenType().equalsIgnoreCase("web"))
+//                {
+//                    intent= new Intent(activity, DocumentViewer.class);
+//                }
+//                if(intent!=null)
+//                {
+                    intent.putExtra("kontenId",k.getKontenId());
+                    intent.putExtra("kontenType",k.getKontenType());
+                    intent.putExtra("kontenName",k.getKontenName());
+                    intent.putExtra("value",k.getValue());
                     activity.startActivity(intent);
-                }
+//                }
             }
         });
     }
